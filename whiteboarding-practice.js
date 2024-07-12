@@ -105,3 +105,104 @@ function isPrime(number) {
     // step 3: if no divisors are found, return true
     return true;
 }
+
+// time complexity: O(root/n) - we only check for factors up to the square root of the number
+// space complexity: O(1) - we aren't using any additional data structures that grow with input size
+
+
+function maxValue(array) {
+    // step 1: check if the array is empty
+    if (array.length === 0) {
+        return null;
+    }
+
+    // step 2: initialise a variable to store max value
+    let max = array[0];
+
+    // step 3: iterate through the array
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > max) {
+            max = array[i];
+        }
+    }
+
+    // step 4: return the max value
+    return max;
+}
+
+// time complexity: O(n) - we iterate through each element in the array
+// space complexity: O(1) - using a constant amount of extra space to store max value
+
+
+function myIndexOf(array, target) {
+    // step 1: iterate through array
+    for (let i = 0; i < array.length; i++) {
+        // compare each element with the target
+        if (array[i] === target) {
+            // step 2: if target is found, return current index
+            return i;
+        }
+    }
+
+    // step 3: if the loop completes without finding the target, return -1
+    return -1;
+}
+
+// time complexity: O(n) - in worst case, we may need to check each element in array once
+// space complexity; O(1) - since we are using a constant amount of extra space
+
+
+function factorArray(array, num) {
+    // step 1: create an empty array
+    let result = [];
+
+    // step 2: iterate through the input array
+    for (let i = 0; i < array.length; i++) {
+        // check if current element is a factor of num
+        if (num % array[i] === 0) {
+            result.push[i];
+        }
+    }
+    // step 3: return resulting array
+    return result;
+}
+// time complexity: O(n)
+// space complexity: O(n)
+
+
+
+function oddRange(end) {
+    // step 1: create an empty array
+    let result = [];
+
+    // step 2: use a loop to iterate through numbers from 1 to end inclusive
+    for (let i = 1; i <= end; i++) {
+        // step 3: check if each number is odd
+        if (i % 2 === 0) {
+            // add to result array
+            result.push(i);
+        }
+    }
+
+    // step 4: return resulting array
+    return result;
+}
+// time complexity: O(n)
+// space complexity: O(n)
+
+
+function reverseHyphenString(string) {
+    // step 1: split the string into an array of words
+    let words = string.split('-');
+
+    // step 2: reverse the array of words
+    let reversedWords = words.reverse();
+
+    // step 3: join the words back into a string
+    let reversedString = reversedWords.join('-');
+
+    // step 4: return the resulting string
+    return reversedString;
+}
+// time complexity: O(n) - splitting the string, reversing the array, and joining the string are all linear operations
+// space complexity: O(n) - we are storing the split array of words and the reversed array in memory
