@@ -206,3 +206,153 @@ function reverseHyphenString(string) {
 }
 // time complexity: O(n) - splitting the string, reversing the array, and joining the string are all linear operations
 // space complexity: O(n) - we are storing the split array of words and the reversed array in memory
+
+// #11
+function intersect(arr1, arr2) {
+    // step 1: create an empty array
+    let result = [];
+
+    // step 2: use a set to store the elements of the first array for quick lookup
+    let set1 = new Set(arr1);
+
+    // step 3: iterate through the second array
+    for (let element of arr2) {
+        // check if it exists in the set
+        if (set1.has(element)) {
+            // if it exists, add it to the result array
+            result.push(element);
+        }
+    }
+
+    // step 4: return the resulting array
+    return result;
+}
+// time complexity: O(n+m) - creating the set from `arr1` takes O(n) time, and checking each element of `arr2` against the set takes O(m) time
+// space complexity: O(n) - we're storing the elements of `arr1` in a set
+
+// #12
+function mirrorArray(array) {
+    // step 1: create new array that is a copy of input array
+    let mirrored = array.slice();
+
+    // step 2: reverse the input array
+    let reversed = array.slice().reverse();
+
+    // step 3: concatenate the reversed array to the original array
+    mirrored = mirrored.concat(reversed);
+
+    // step 4: return the concatenated array
+    return mirrored;
+}
+
+// improved solution
+function streamlinedMirrorArray(array) {
+    // step 1: create an empty array to store the result
+    let result = [];
+
+    // step 2: add the elements of original array to result array
+    for (let i = 0; i < array.length; i++) {
+        result.push(array[i]);
+    }
+
+    // step 3: add the elements in reverse order
+    for (let i = array.length - 1; i >= 0; i--) {
+        result.push(array[i]);
+    }
+
+    // step 4: return resulting array
+    return result;
+}
+
+
+// #13
+function abbreviate(sentence) {
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+    // step 1: split sentence into new array of words
+    let words = sentence.split(' ');
+
+    // step 2: iterate through each word in the array
+    for (let i = 0; i < words.length; i++) {
+        let word = words[i];
+
+        // check if word is longer than 4 chars
+        if (word.length > 4) {
+            // remove the vowels from the word
+            let abbreviateWord = '';
+            for (let char of word) {
+                if (!vowels.includes(char)) {
+                    abbreviatedWord += char;
+                }
+            }
+            // replace the word in array with abbreviated word
+            words[i] = abbreviatedWord;
+        }
+    }
+
+    // step 3: join the array words back into a sentence
+    let abbreviatedSentence = words.join(' ');
+
+    // step 4: return resulting sentence
+    return abbreviatedSentence;
+}
+// time complexity: O(n) - need to iterate through each character in the sentence
+// space complexity: O(n) - creating a new string for each word and storing the resulting sentence
+
+// #14
+function adults(people) {
+    // step 1: create empty array to store names of adults
+    let adultNames = [];
+
+    // step 2: iterate through the array of person objects
+    for (let person of people) {
+        // check if person's age is 18 or higher
+        if (person.age >= 18) {
+            // add the person's name to the result array
+            adultNames.push(person.name);
+        }
+    }
+
+    // step 3: return resulting array of names
+    return adultNames;
+}
+// example
+const ppl = [
+    {name: 'John', age: 20},
+    {name: 'Jim', age: 13},
+    {name: 'Jane', age: 18},
+    {name: 'Bob', age: 7}
+];
+
+console.log(adults(ppl)); // => [ 'John', 'Jane' ]
+
+// time complexity: O(n) - need to iterate through each person to check their age and potentially add to array
+// space complexity: O(n) - in the worst case, all people in the array are adults
+
+
+// #15
+function countScores(people) {
+    // steps 1: create an empty object to store the cumulative scores
+    let scoreCounts = {};
+
+    // step 2: iterate through the array of score objects
+    for (let person of people) {
+        let name = person.name;
+        let score = person.score;
+
+        // check if the name already exists in the result object
+        if (scoreCounts[name] !== undefined) {
+            // add the current score to the existing score
+            scoreCounts[name] += score;
+        } else {
+            // add the name as a key and set the value to the current score
+            scoreCounts[name] = score;
+        }
+    }
+
+    // step 3: return the result object
+    return scoreCounts;
+}
+
+// time complexity: O(n) - need to iterate through each object once to accumulate scores
+// space complexity: O(k) - k is the number of unique names in the input array
