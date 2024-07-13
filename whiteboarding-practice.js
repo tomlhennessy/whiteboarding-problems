@@ -356,3 +356,121 @@ function countScores(people) {
 
 // time complexity: O(n) - need to iterate through each object once to accumulate scores
 // space complexity: O(k) - k is the number of unique names in the input array
+
+
+// #16
+function firstNPrimes(n) {
+    // step 1: create an empty array to store the prime numbers
+    let primes = [];
+
+    // step 2: initialise a variable to keep track of current number
+    let currentNum = 2;
+
+    // step 3: find prime numbers until array contains n primes
+    while (primes.length < n) {
+        if (isPrime(currentNum)) {
+            primes.push(currentNum);
+        }
+        currentNum++;
+    }
+
+    // step 4: return array of primes
+    return primes;
+}
+// time complexity:
+// space complexity: O(n) - storing the first 'n' prime numbers in an array
+
+
+// #17
+function peakFinder(array) {
+    // step 1: create an empty array store the indices of the peaks
+    let peaks = [];
+
+    // step 2: iterate through the array to check for peaks
+    for (let i = 0; i < array.length; i++) {
+        if (i === 0) {
+            // check if first element is peak
+            if (array[i] > array[i + 1]) {
+                peaks.push(i);
+            }
+        } else if (i === array.length - 1) {
+            // check if last element is peak
+            if (array[i] > array[i - 1]) {
+                peaks.push(i);
+            }
+        } else {
+            if (array[i] > array[i - 1] && array[i] > array[i + 1]) {
+                peaks.push(i);
+            }
+        }
+    }
+
+    // step 3: return result array containing indices of all peaks
+    return peaks;
+}
+// time complexity: O(n) - we iterate through each element of the array once
+// space complexity: O(k) - k is the number of peaks
+
+
+// #18
+function divisibleByThreePairSum(array) {
+    // step 1: create an empty array to store the pairs of indices
+    let pairs = [];
+
+    // step 2: use a nested loop to iterate through each possible pair of indices in the array
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = i + 1; j < array.length; j++)
+            // step 3: check if sum of elements is divisible by three
+            if ((array[i] + array[j] % 3 === 0)) {
+                // add to result array
+                pairs.push([i, j]);
+            }
+    }
+
+    // step 4: return the result array containing the pairs of indices
+    return pairs;
+}
+// time complexity: O(n^2) - because we use a nested loop to check each pair of indices
+// space complexity: O(k) - because we store the pairs of indices in the result array
+
+
+// #19
+function zipArray(arr1, arr2) {
+    // step 1: create an empty array to store the zipped pairs
+    let zipped = [];
+
+    // step 2: use a loop to iterate through the indices of the arrays
+    for (let i = 0; i < arr1.length; i++) {
+        // create a pair consisting of the elements from arr1 and arr2 at the current index
+        let pair = [arr1[i], arr2[i]];
+
+        // add the pair to the result array
+        zipped.push(pair);
+    }
+
+    // step 3: return the result array
+    return zipped;
+}
+// time complexity: O(n) - we iterate through each element of the arrays once
+// space complexity: O(n) - we store the resulting 2D array containing pairs of elements
+
+
+// #20
+function twoDimensionalTotal(array) {
+    // step 1: initialise a variable to store the total sum and set it to 0
+    let total = 0;
+
+    // step 2: iterate through each sub-array in the 2D array
+    for (let subArray of array) {
+        // iterate through each element in sub-array
+        for (let num of subArray) {
+            // add the element to the total sum
+            total += num;
+        }
+    }
+
+    // step 3: return the total sum
+    return total;
+}
+// time complexity: O(n) - need to iterate through each element once to calculate the total sum
+// space complexity: O(1) - we are only using a constant amount of extra space for the `total` variable
