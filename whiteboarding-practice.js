@@ -474,3 +474,118 @@ function twoDimensionalTotal(array) {
 }
 // time complexity: O(n) - need to iterate through each element once to calculate the total sum
 // space complexity: O(1) - we are only using a constant amount of extra space for the `total` variable
+
+
+// #21
+function countInnerElement(arr) {
+    // step 1: create an empty object to store the counts of each element
+    let counts = {};
+
+    // step 2: iterate through each sub-array in the 2-d array
+    for (let subArray of arr) {
+        // iterate through each element in the sub array
+        for (let element of subArray) {
+            // if the element is already a key in the object, increment its count
+            if (counts[element] !== undefined) {
+                counts[element]++;
+            } else {
+                // if the element is not already a key, add it to the object with a count of 1
+                counts[element] = 1;
+            }
+        }
+    }
+
+    // step 3: return the object with the counts
+    return counts;
+}
+// time  complexity: O(n) - we need to iterate through each element once to count its occurances
+// space complexity: O(k) - k is the number of unique elements in the array
+
+
+// #22
+function twoDiff(array) {
+    // step 1: create an empty array to store the pairs of indices
+    let pairs = [];
+
+    // step 2: use a nested loop to iterate through each possible pair of indices
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            // step 3: check if the absolute difference between the elements is 2
+            if (Math.abs(array[i] - array[j]) === 2) {
+                // if it is, add the pair of indices to the result array
+                pairs.push([i, j]);
+            }
+        }
+    }
+
+    // step 4: return the result array containing the pairs of indices
+    return pairs;
+}
+// time complexity: O(n^2) - we use a nested loop to check each pair of indices
+// space complexity: O(k) - k is the number of pairs whose elements have a difference of 2
+
+
+// #23
+function arrayDiff(arr1, arr2) {
+    // step 1: create a set from arr2
+    const set2 = new Set(arr2);
+
+    // step 2: create an empty array to store the result
+    let result = [];
+
+    // step 3: iterate through each element in arr1
+    for (let element of arr1) {
+        // if element is not in set created from arr2, add it to resulting array
+        if (!set2.has(element)) {
+            result.push(element);
+        }
+    }
+
+    // step 4: return the result array
+    return result;
+}
+// time complexity O(n + m) - creating the set from `arr2` takes O(m) time, and iterating through `arr1` takes O(n) time
+// space complexity O(m) - m is the length of `arr2`, because we are storing the elements of `arr2` in a set
+
+
+// #24
+function valueCounter(obj, val) {
+    // step 1: initialise a counter
+    let count = 0;
+
+    // step 2: iterate through the values of the object
+    for (let key in obj) {
+        if (obj[key] === val) {
+            // increment the counter if the value matches
+            count++;
+        }
+    }
+
+    // step 3: return the counter
+    return count;
+}
+// time complexity: O(n) - need to check each value once
+// space complexity: O(1) - we are using a constant amount of extra space for the counter
+
+
+// #25
+function elementCount(array) {
+    // step 1: create an empty object to store counts of each element
+    let counts = {};
+
+    // step 2: iterate through each element in the array
+    for (let element of array) {
+        // if the element already exists as a key in the object, increment the value
+        if (counts[element] !== undefined) {
+            counts[element]++;
+        } else {
+            // if the element doesn't exist, add the element as a key and set value to 1
+            counts[element] = 1;
+        }
+    }
+
+    // step 3: return the object with the counts
+    return counts;
+}
+// time complexity: O(n) - need to iterate through each element once
+// space complexity: O(k) - need to store a count for each unique element in the object
