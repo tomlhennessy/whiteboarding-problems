@@ -589,3 +589,121 @@ function elementCount(array) {
 }
 // time complexity: O(n) - need to iterate through each element once
 // space complexity: O(k) - need to store a count for each unique element in the object
+
+
+// #26
+// Step 1: helper function
+function isPrime(number) {
+    if (number < 2) {
+        return false;
+    }
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+}
+
+function nextTwoPrimes(num) {
+    // step 2: initialise an empty array to store the next two primes
+    let primes = [];
+
+    // step 3: use a loop to find next two prime numbers greater than num
+    let currentNum = num + 1;
+    while (primes.length < 2) {
+        if (isPrime(currentNum)) {
+            primes.push(currentNum);
+        }
+        currentNum++;
+    }
+
+    // step 4: return the result array
+    return primes;
+}
+// time complexity: O(root/n)
+// space complexity: O(1)
+
+
+// #27
+function pairProduct(arr, num) {
+    // step 1: create an empty array to store pairs of indices
+    let pairs = [];
+    let i = 0;
+
+    // step 2: use a nested while loop to iterate through each possible pair of indices in the array
+    while (i < arr.length - 1) {
+        let j = i + 1;
+        while (j < arr.length) {
+            // step 3: check if product of elements is equal to num
+            if (arr[i] * arr[j] === num) {
+                // add the pair of indices to result array
+                pairs.push([i, j]);
+            }
+            j++;
+        }
+        i++;
+    }
+
+    // step 4: return the result array containing the pairs of indices
+    return pairs;
+}
+// time complexity: O(n^2) - we use a nested loop to check each pair of indices
+// space complexity: O(k) - we store the pairs of indices in resulting array
+
+
+// #28
+function twoDimensionalSize(array) {
+    // step 1: initialise a counter
+    let totalElements = 0;
+
+    // step 2: iterate through each sub-array in the 2D array
+    for (let subArray of array) {
+        // increment the counter by length of sub-array
+        totalElements += subArray.length;
+    }
+
+    // step 3: return the counter as the total number of elements
+    return totalElements;
+}
+// time complexity: O(n) - we iterate through each sub-array once
+// space complecity: O(1) - we are using a constant amount of extra space for the counter
+
+// #29
+function longWordCount(string) {
+    // step 1: split the string into an array of words
+    let words = string.split(' ');
+
+    // step 2: initialise counter to keep track of number of long words
+    let count = 0;
+
+    // step 3: iterate through each word in array
+    for (let word of words) {
+        // check if the word length is greater than 7
+        if (word.length > 7) {
+            // increment the counter if the word is long
+            count++;
+        }
+    }
+
+    // step 4: return the counter
+    return count;
+}
+// time complexity O(n) - we iterate through each word once
+// space complexity O(n) - we store the words in an array
+
+
+// #30
+function factorial(n) {
+    // step 1: initialise variable to store result and set to 1
+    let result = 1;
+
+    // step 2: use a loop to multiply the result by each integer from 1 to n
+    for (let i = 1; i <= n; i++) {
+        result *= i;
+    }
+
+    // step 3: return result array as the factorial of n
+    return result;
+}
+// time complexity: O(n)
+// space complexity: O(1)
