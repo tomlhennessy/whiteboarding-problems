@@ -707,3 +707,104 @@ function factorial(n) {
 }
 // time complexity: O(n)
 // space complexity: O(1)
+
+
+// #31
+function lcm(num1, num2) {
+    // step 1: determine the starting point for the iteration
+    let multiple = Math.max(num1, num2);
+
+    // step 2: use a while loop to find the LCM
+    while (true) {
+        if (multiple % num1 === 0 && multiple % num2 === 0) {
+            // step 3: return the first number that is a multiple of both
+            return multiple;
+        }
+        multiple++;
+    }
+}
+// time complexity: high in worst case
+// space complexity: O(1)
+
+
+// #32
+function hipsterfyWord(word) {
+    // step 1: define a list of vowels
+    const vowels = [`a`, `e`, `i`, `o`, `u`, `A`, `E`, `I`, `O`, `U`];
+
+    // step 2: iterate through string from end
+    for (let i = word.length - 1; i >= 0; i--) {
+        // check if the current character is a vowel
+        if (vowels.includes(word[i])) {
+            // step 3: remove the last vowel and return modified string
+            return word.slice(0, i) + word.slice(i + 1);
+        }
+    }
+
+    // if no vowel found, return original word
+    return word;
+}
+// time complexity: O(n) - may need to check each character once in worst case
+// space complexity: O(n) - creating a new string with one less character
+
+
+// #33
+function hipsterfy(sentence) {
+    // step 1: split the sentence into array of words
+    let words = sentence.split(` `);
+
+    // step 2: iterate through each word and apply hipsterfyWord
+    for (let i = 0; i < words.length; i++) {
+        words[i] = hipsterfyWord(words[i]);
+    }
+
+    // step 3: join words back into a sentence
+    let modifiedSentence = words.join(' ');
+
+    // step 4: return modified sentence
+    return modifiedSentence;
+}
+// time complexity O(n . m) - n is number of words and m is average length of words
+// space complexity: O(n . m) - storing the words in an array and the resulting modified sentence
+
+
+// #34
+function objectToString(count) {
+    // step 1: initialise an empty string to build result
+    let result = '';
+
+    // step 2: iterate through each key-value pair in object
+    for (let char in count) {
+        // append key to result string
+        result += char.repeat(count[char]);
+    }
+
+    // step 3: return resulting string
+    return result;
+}
+// time complexity: O(n) - we need to process each character and its count in the object
+// space complexity: O(n) - we need to store the output string
+
+
+// #35
+function shortestWord(sentence) {
+    // step 1: split sentence into array of words
+    let words = sentence.split(' ');
+
+    // step 2: initialise variable to keep track of shortest word
+    let shortest = words[0];
+
+    // step 3: iterate through each word in array
+    for (let i = 1; i < words.length; i++) {
+        if (words[i].length < shortest.length) {
+            // update the shortest word if current word is shorter
+            shortest = words[i];
+        }
+
+    }
+
+    // step 4: return shortest word
+    return shortest;
+}
+// time complexity: O(n) - need to iterate through each word once
+// space complexity: O(1) - using a constant amount of extra space for `shortest` variable
