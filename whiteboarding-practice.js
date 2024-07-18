@@ -808,3 +808,99 @@ function shortestWord(sentence) {
 }
 // time complexity: O(n) - need to iterate through each word once
 // space complexity: O(1) - using a constant amount of extra space for `shortest` variable
+
+
+// #36
+function greatestCommonFactor(num1, num2) {
+    // use the Euclidian algorithm to find the GCF
+    while (num2 !== 0) {
+        let temp = num2;
+        num2 = num1 % num2;
+        num1 = temp;
+    }
+    return num1;
+}
+
+
+// #37
+function isPassing(assessments) {
+    // step 1: initialise a variable to store the total score
+    let totalScore = 0;
+
+    // step 2: iterate through each assessment
+    for (let assessment of assessments) {
+        totalScore += assessment.score;
+    }
+
+    // step 3: calculate the average score
+    let averageScore = totalScore / assessments.length;
+
+    // step 4: return true if the average score is at least 70, otherwise return false
+    return averageScore >= 70;
+}
+// time complexity: O(n) - need to iterate through each assessment once
+// space complexity: O(1) - using a constant amount of space for the total score and average score
+
+
+// #38
+function valueConcat(array, obj) {
+    // step 1: initialise a new array to store the result
+    let result = [];
+
+    // step 2: iterate through each element in the input array
+    for (let element of array) {
+        if (obj[element] !== undefined) {
+            // if the element exists as a key in the object, concatenate it with its value from object
+            result.push(element + obj[element]);
+        } else {
+            // if the element does not exist as a key, keep the element unchanged
+            result.push(element);
+        }
+    }
+
+    // step 4: return result array
+    return result;
+}
+// time complexity: O(n) - need to iterate through each element once
+// space complexity: O(n) - storing the result in a new array
+
+
+// #39
+function threeInARow(arr) {
+    // step 1: iterate through the array from first element to third-to-last-element
+    for (let i = 0; i < arr.length - 3; i++) {
+        // step 2: check if the current element and next two elements are the same
+        if (arr[i] === arr[i + 1] && arr[i] === arr[i + 2]) {
+            return true;
+        }
+    }
+
+    // step 3: return false if no three consecutive elements are found
+    return false;
+}
+// time complexity: O(n) - we iterate through each element once
+// space complexity: O(1) - using a constant amount of extra space for the loop variable
+
+
+// #40
+function variableNameify(words) {
+    if (words.length === 0) return '';
+
+    // step 1: convert the first word to lowercase
+    let variableName = words[0].toLowerCase();
+
+    // step 2: iterate through remaining words
+    for (let i = 1; i < words.length; i++) {
+        // convert each word to lowercase and capitalise the first letter
+        let word = words[i].toLowerCase();
+        let capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
+
+        // step 3: concatenate all words together
+        variableName += capitalizedWord;
+    }
+
+    // step 4: return the concatenated string as the variable name
+    return variableName;
+}
+// time complexity: O(n) - we iterate through each word and process each character
+// space complexity: O(n) - we store the result in a new string
