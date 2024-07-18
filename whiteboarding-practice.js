@@ -904,3 +904,116 @@ function variableNameify(words) {
 }
 // time complexity: O(n) - we iterate through each word and process each character
 // space complexity: O(n) - we store the result in a new string
+
+
+// #41
+function threeIncreasing(arr) {
+    // step 1: iterate through the array from the first element to the third-to-last element
+    for (let i = 0; i <= arr.length - 3; i++) {
+        // step 2: check if current element and next two elements are in increasing order by 1
+        if (arr[i] + 1 === arr[i + 1] && arr[i + 1] + 1 === arr[i + 2]) {
+            return true;
+        }
+    }
+
+    // step 3: return false if no three consecutive elements are found
+    return false;
+}
+// time complexity: O(n) - we iterate through each element once
+// space complexity: O(1) - we are using a constant amount of extra space for the loop variable
+
+
+// #42
+function reverse2D(array) {
+    // step 1: flatten the 2D array into a 1D array
+    let flattened = [];
+    for (let subArray of array) {
+        flattened = flattened.concat(subArray);
+    }
+
+    // step 2: reverse the 1D array
+    flattened.reverse();
+
+    // step 3: join the reversed array into a single string
+    let result = flattened.join('');
+
+    // step 4: return the resulting string
+    return result;
+}
+// time complexity: O(n) - we iterate through each element once to flatten, reverse, and join them
+// space complexity: O(n) - we store the flattened version of the array and the resulting string
+
+
+// #43
+function reverb(word) {
+    const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+    let lastVowelIndex = -1;
+
+    // step 2: find the last vowel in the word
+    for (let i = word.length - 1; i >= 0; i--) {
+        if (vowels.includes(word[i])) {
+            lastVowelIndex = i;
+            break;
+        }
+    }
+
+    // step 3: if a vowel is found, repeat the substring
+    if (lastVowelIndex !== -1) {
+        let substring = word.slice(lastVowelIndex);
+        word = word + substring;
+    }
+
+    // step 4: return the modified word
+    return word;
+}
+// time complexity: O(n) - need to iterate through each character once to find last vowel and again to concatenate the substring
+// space complexity: O(n) - resulting string may be up to twice the length of input string in worst case
+
+// #44
+function countRepeats(string) {
+    // step 1: create an object to count the occurances of each char
+    let charCount = {};
+
+    // step 2: iterate through string and populate object
+    for (let char of string) {
+        if (charCount[char]) {
+            charCount[char]++;
+        } else {
+            charCount[char] = 1;
+        }
+    }
+
+    // step 3: count the number of characters that have a count greater than 1
+    let repeatCount = 0;
+    for (let char in charCount) {
+        if (charCount[char] > 1) {
+            repeatCount++;
+        }
+    }
+
+    // step 4: return the count of such characters
+    return repeatCount;
+}
+// time complexity: O(n) - we iterate through the string once to count characters and once to count the repeats
+// space complexity: O(1) - we consider the space required for the `charCount` object to be constant relatvie to input size. However, in the worst case, it is O(n), where n is the number of unique characters in the string
+
+
+// #45
+function pairsToString(arr) {
+    // step 1: initialise an empty string to build result
+    let result = '';
+
+    // step 2: iterate through the array of pairs
+    for (let pair of arr) {
+        let char = pair[0];
+        let count = pair[1];
+
+        // append the char repeated `count` times to the result
+        result += char.repeat(count);
+    }
+
+    // step 3: return resulting string
+    return result;
+}
+// time complexity: O(n) - need to repeat each character and build final string
+// space complexity: O(n) - we store the final string in memory
