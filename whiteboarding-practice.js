@@ -1017,3 +1017,103 @@ function pairsToString(arr) {
 }
 // time complexity: O(n) - need to repeat each character and build final string
 // space complexity: O(n) - we store the final string in memory
+
+
+// #46
+function countAdjacentSums(arr, n) {
+    // step 1: initialise a counter
+    let count = 0;
+
+    // step 2: iterate through array from first element to second-to-last element
+    for (let i = 0; i < arr.length - 1; i++) {
+        // step 3: check each pair of adjacent elements
+        if (arr[i] + arr[i + 1] === n) {
+            // increment the counter if the sum equals n
+            count++;
+        }
+    }
+
+    // step 4: return the counter
+    return count;
+}
+// time complexity: O(n) - we iterate through each element once
+// space complexity: O(1) - using a constant amount of extra space for the `count` variable
+
+
+// #47
+function signFlipCount(nums) {
+    // step 1: initialise a counter
+    let count = 0;
+
+    // step 2: iterate through array
+    for (let i = 0; i < nums.length - 1; i++) {
+        // step 3: check each pair of adjacent elements
+        if (nums[i] !== 0 && nums[i + 1] !== 0 && ((nums[i] > 0 && nums[i + 1] < 0) || (nums[i] < 0 && nums[i + 1] > 0))) {
+            count++;
+        }
+    }
+
+    // step 4: return the counter
+    return count;
+}
+// time complexity: O(n) - we iterate through each element once
+// space complexity: O(1) - using a constant amount of extra space for the `count` variable
+
+
+// #48
+function powerSequence(base, length) {
+    // step 1: initialise array with first element being the base
+    let sequence = [base];
+
+    // step 2: iterate from 1 to length - 1 to generate sequence
+    for (let i = 1; i < length; i++) {
+        // step 3: multiply last element of array by base and append result
+        sequence.push(sequence[sequence.length - 1] * base);
+    }
+
+    // step 4: return array
+    return sequence;
+}
+// time complexity: O(n) - we iterate `length - 1` times to build the sequence
+// space complexity: O(n) - we store the resulting sequence in an array
+
+
+// #49
+function collapseString(str) {
+    // step 1: initialise empty string to build result
+    let result = '';
+
+    // step 2: iterate through the string char by char
+    for (let i = 0; i < str.length; i++) {
+        // step 3: check if current char is same as previous char
+        if (i > 0 && str[i] === str[i - 1]) {
+            continue; // skip this character
+        }
+
+        // add current char to result string
+        result += str[i];
+    }
+
+    // step 4: return result string
+    return result;
+}
+// time complexity: O(n) - we iterate through each char once
+// space complexity: O(n) - we store the resulting string in memory
+
+
+// #50
+function oddWordsOut(sentence) {
+    // step 1: split sentence into array of words
+    let words = sentence.split(' ');
+
+    // step 2: filter array to include only words with even no. of chars
+    let evenWords = words.filter(word => word.length % 2 === 0);
+
+    // step 3: join filtered array back into a string
+    let result = evenWords.join(' ');
+
+    // step 4: return resulting string
+    return result;
+}
+// time complexity: O(n) - we split the string into words, filter the words, and join them back into a string
+// space complexity: O(n) - we store the words in an array and create a filtered array
