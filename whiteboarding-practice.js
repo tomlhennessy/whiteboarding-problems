@@ -1117,3 +1117,113 @@ function oddWordsOut(sentence) {
 }
 // time complexity: O(n) - we split the string into words, filter the words, and join them back into a string
 // space complexity: O(n) - we store the words in an array and create a filtered array
+
+
+// #51
+function mindPsAndQs(str) {
+    let currentStreak = 0;
+    let longestStreak = 0;
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === 'P' || str[i] === 'Q') {
+            currentStreak++;
+        } else {
+            if (currentStreak > longestStreak) {
+                longestStreak = currentStreak;
+            }
+            currentStreak = 0;
+        }
+    }
+
+    // final check in case longest streak ends at end of string
+    if (currentStreak > longestStreak) {
+        longestStreak = currentStreak;
+    }
+
+    return longestStreak;
+}
+// time complexiy: O(n)
+// space complexity: O(1)
+
+
+// #52
+function findFactors(num) {
+    const factors = [];
+    for (let i = 1; i <= num; i++) {
+        if (num % i === 0) {
+            factors.push(i);
+        }
+    }
+    return factors;
+}
+
+function commonFactors(num1, num2) {
+    const factors1 = findFactors(num1);
+    const factors2 = findFactors(num2);
+
+    const common = [];
+    for (let factor of factors1) {
+        if (factors2.includes(factor)) {
+            common.push(factor);
+        }
+    }
+    return common;
+}
+
+
+// #53
+function splitHalfArray(array) {
+    let middleIndex = Math.floor(array.length / 2);
+    if (array.length % 2 !== 0) {
+        middleIndex += 1;
+    }
+    const firstHalf = array.slice(0, middleIndex);
+    const secondHald = array.slice(middleIndex);
+    return [firstHalf, secondHalf];
+}
+// time complexity: O(n)
+// space complexity: O(n)
+
+
+// #54
+function threeUniqueVowels(string) {
+    const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+    const uniqueVowels = new Set();
+
+    for (let char of string.toLowerCase()) {
+        if (VOWELS.includes(char)) {
+            uniqueVowels.add(char);
+        }
+    }
+
+    return uniqueVowels.size >= 3;
+}
+// time complexity: O(n)
+// space complexity: O(1) - maximum size of the set is five
+
+
+// #55
+function vowelShift(sentence) {
+    const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+    const vowelMap = {
+        'a': 'e',
+        'e': 'i',
+        'i': 'o',
+        'o': 'u',
+        'u': 'a'
+    }
+
+    let newSentence = '';
+
+    for (let char of sentence) {
+        if (vowelMap[char]) { // check if character is a vowel
+            newSentence += vowelMap[char]; // replace with the next vowel
+        } else {
+            newSentence += char; // keep it unchanged
+        }
+    }
+
+    return newSentence;
+}
+// time complexity: O(n) - iterating over each character in sentence
+// space complexity: O(n) - storing the new sentence
