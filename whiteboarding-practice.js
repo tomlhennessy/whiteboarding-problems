@@ -1227,3 +1227,83 @@ function vowelShift(sentence) {
 }
 // time complexity: O(n) - iterating over each character in sentence
 // space complexity: O(n) - storing the new sentence
+
+
+// #56
+function hasSymmetry(array) {
+    let n = array.length;
+    for (let i = 0; i < n / 2; i++) {
+        if (array[i] !== array[n - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+// time complexity: O(n)
+// space complexity: O(1)
+
+
+// #57
+function sumOfEvens(num) {
+    let sum = 0;
+    for (let i = 2; i <= num; i += 2) {
+        sum += i;
+    }
+    return sum;
+}
+
+function evenSumArray(array) {
+    let result = [];
+    for (let num of array) {
+        result.push(sumOfEvens(num));
+    }
+    return result;
+}
+// time complexity: O(n^2)
+// space complexity: O(n)
+
+
+// #58
+function numsToWords(numString) {
+    const digitToWord = {
+        '0': 'Zero',
+        '1': 'One',
+        '2': 'Two',
+        '3': 'Three',
+        '4': 'Four',
+        '5': 'Five',
+        '6': 'Six',
+        '7': 'Seven',
+        '8': 'Eight',
+        '9': 'Nine'
+    }
+
+    let result = '';
+
+    for (let char of numString) {
+        result += digitToWord[char];
+    }
+
+    return result;
+}
+// time complexity: O(n)
+// space complexity: O(n)
+
+
+// #59
+function moreDotLessDash(str) {
+    let dotCount = 0;
+    let dashCount = 0;
+
+    for (let char of str) {
+        if (char === '.') {
+            dotCount++;
+        } else if (char === '-') {
+            dashCount++;
+        }
+    }
+
+    return dotCount > dashCount;
+}
+// time complexity: O(n)
+// space complexity: O(1)
